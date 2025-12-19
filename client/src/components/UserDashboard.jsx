@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
+import axios from "axios";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -22,28 +23,36 @@ ChartJS.register(
 );
 
 const UserDashboard = () => {
-  
-  const userBorrowedBooks = [
-    { id: 1, returned: false },
-    { id: 2, returned: false },
-    { id: 3, returned: false },
-    { id: 4, returned: true },
-    { id: 5, returned: true },
-    { id: 6, returned: true },
-    { id: 7, returned: true },
-    { id: 8, returned: true },
-  ];
-
+  const [userBorrowedBooks, setUserBorrowedBooks] = useState([]);
   const [borrowedCount, setBorrowedCount] = useState(0);
   const [returnedCount, setReturnedCount] = useState(0);
 
   useEffect(() => {
+    const fetchUserBorrows = async () => {
+      try {
+        const { data } = await axios.get(
+          "http://localhost:4000/api/v1/borrow/my",
+          { withCredentials: true }
+        );
+
+        const borrows = data?.borrows || [];
+        setUserBorrowedBooks(borrows);
+      } catch (error) {
+        console.error("Failed to fetch user borrows:", error);
+        setUserBorrowedBooks([]);
+      }
+    };
+
+    fetchUserBorrows();
+  }, []);
+
+  useEffect(() => {
     const borrowed = userBorrowedBooks.filter(
-      (book) => book.returned === false
+      (book) => book.returnDate === null
     ).length;
 
     const returned = userBorrowedBooks.filter(
-      (book) => book.returned === true
+      (book) => book.returnDate !== null
     ).length;
 
     setBorrowedCount(borrowed);

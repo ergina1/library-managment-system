@@ -7,7 +7,7 @@ Install the following tools before running the project:
 - Node.js (v20+)
 - Git
 - Docker Desktop (optional)
-- MongoDB (only if not using Docker)
+- MongoDB
 
 ---
 
@@ -89,6 +89,7 @@ http://localhost:5173
 ---
 
 ## 6. Run With Docker (All-in-one)
+When docker is running, the groq chat (chat assistant for all users) may not run properly due to heavy memory.
 
 ```bash
 docker compose up --build

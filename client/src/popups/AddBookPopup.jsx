@@ -8,6 +8,7 @@ const AddBookPopup = () => {
 
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
+  const [genre, setGenre] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [description, setDescription] = useState("");
@@ -18,6 +19,7 @@ const AddBookPopup = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("author", author);
+    formData.append("genre", genre);
     formData.append("price", price);
     formData.append("quantity", quantity);
     formData.append("description", description);
@@ -56,6 +58,20 @@ const AddBookPopup = () => {
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
                 placeholder="Book Author"
+                className="w-full px-4 py-2 border-2 border-black rounded-md"
+                required
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="block text-gray-900 font-medium">
+                Genre
+              </label>
+              <input
+                type="text"
+                value={genre}
+                onChange={(e) => setGenre(e.target.value)}
+                placeholder="e.g. Fiction, Science, Romance"
                 className="w-full px-4 py-2 border-2 border-black rounded-md"
                 required
               />

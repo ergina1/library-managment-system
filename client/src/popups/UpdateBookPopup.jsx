@@ -9,6 +9,7 @@ const UpdateBookPopup = ({ book }) => {
   const [formData, setFormData] = useState({
     title: "",
     author: "",
+    genre: "",
     description: "",
     price: "",
     quantity: "",
@@ -20,6 +21,7 @@ const UpdateBookPopup = ({ book }) => {
       setFormData({
         title: book.title || "",
         author: book.author || "",
+        genre: book.genre || "",
         description: book.description || "",
         price: book.price || "",
         quantity: book.quantity || "",
@@ -46,7 +48,6 @@ const UpdateBookPopup = ({ book }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 p-5 flex items-center justify-center z-50">
       <div className="w-11/12 bg-white rounded-lg shadow-lg sm:w-1/2 lg:w-1/3">
 
-        
         <div className="flex justify-between items-center bg-black text-white px-6 py-4 rounded-t-lg">
           <h2 className="text-lg font-bold">Update Book Info</h2>
           <button
@@ -57,10 +58,8 @@ const UpdateBookPopup = ({ book }) => {
           </button>
         </div>
 
-        
         <div className="p-6">
 
-          
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold">
               Book Title
@@ -73,7 +72,6 @@ const UpdateBookPopup = ({ book }) => {
             />
           </div>
 
-          
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold">
               Author
@@ -86,7 +84,18 @@ const UpdateBookPopup = ({ book }) => {
             />
           </div>
 
-          
+          <div className="mb-4">
+            <label className="block text-gray-700 font-semibold">
+              Genre
+            </label>
+            <input
+              name="genre"
+              value={formData.genre}
+              onChange={handleChange}
+              className="border border-gray-300 rounded-lg px-4 py-2 w-full"
+            />
+          </div>
+
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold">
               Description
@@ -100,7 +109,6 @@ const UpdateBookPopup = ({ book }) => {
             />
           </div>
 
-          
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold">
               Price
@@ -114,7 +122,6 @@ const UpdateBookPopup = ({ book }) => {
             />
           </div>
 
-         
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold">
               Quantity
@@ -128,7 +135,6 @@ const UpdateBookPopup = ({ book }) => {
             />
           </div>
 
-          
           <div className="flex items-center gap-2">
             <input
               type="checkbox"
@@ -142,7 +148,6 @@ const UpdateBookPopup = ({ book }) => {
           </div>
         </div>
 
-        
         <div className="flex justify-end gap-3 px-6 py-4 bg-gray-100 rounded-b-lg">
           <button
             className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300"

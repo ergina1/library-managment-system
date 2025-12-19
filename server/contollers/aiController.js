@@ -70,11 +70,7 @@ const parseQuestion = (question) => {
   return { intent: "UNKNOWN" };
 };
 
-/**
- * =========================
- * 🤖 ADMIN AI ASSISTANT
- * =========================
- */
+
 export const askLibrary = catchAsyncErrors(async (req, res, next) => {
   const question = req.body?.question;
 
@@ -340,11 +336,7 @@ export const askLibrary = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-/**
- * =========================
- * 🎯 AI RECOMMENDATIONS (USER)
- * =========================
- */
+
 export const getRecommendations = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user._id);
   let recommendations = [];
@@ -393,11 +385,7 @@ export const getRecommendations = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-/**
- * =========================
- * 💬 USER CHATBOT (GROQ)
- * =========================
- */
+
 export const chatWithLibrary = catchAsyncErrors(async (req, res, next) => {
   const message = req.body?.message;
 
@@ -408,7 +396,7 @@ export const chatWithLibrary = catchAsyncErrors(async (req, res, next) => {
     });
   }
 
-  console.log("🔥 Groq chat request received:", message);
+  console.log("Groq chat request received:", message);
 
   try {
     const groq = getGroqClient();
@@ -448,14 +436,14 @@ Be friendly and concise.`,
       chatCompletion.choices[0]?.message?.content ||
       "Sorry, I couldn't generate a response.";
 
-    console.log("✅ Groq reply:", reply);
+    console.log("Groq reply:", reply);
 
     return res.status(200).json({
       success: true,
       reply,
     });
   } catch (error) {
-    console.error("❌ Groq error:", error);
+    console.error("Groq error:", error);
 
     return res.status(500).json({
       success: false,

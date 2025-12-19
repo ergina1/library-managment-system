@@ -1,0 +1,22 @@
+# node
+node_modules/
+npm-debug.log*
+
+# environment variables
+.env
+.env.*
+server/config/config.env
+
+# docker / database volumes
+docker-data/
+data/
+.mongo-data/
+**/data/db/
+
+# build output
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
